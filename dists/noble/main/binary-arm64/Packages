@@ -45,6 +45,29 @@ Description: wayland session lock library (GTK4) -- GObject introspection data
  .
  This package contains the gobject-introspection typelib.
 
+Package: gir1.2-rsvg-2.0
+Source: librsvg
+Version: 2.61.3+dfsg-3~24.04.2
+Architecture: arm64
+Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
+Installed-Size: 45
+Depends: gir1.2-cairo-1.0, gir1.2-gdkpixbuf-2.0 (>= 2.23.5-2), gir1.2-gio-2.0, gir1.2-glib-2.0, gir1.2-gobject-2.0, librsvg2-2 (>= 2.58.93)
+Multi-Arch: same
+Homepage: https://gnome.pages.gitlab.gnome.org/librsvg/
+Priority: optional
+Section: introspection
+Filename: pool/main/libr/librsvg/gir1.2-rsvg-2.0_2.61.3+dfsg-3~24.04.2_arm64.deb
+Size: 18254
+SHA512: 3d8bf63a382b93882d55b85a51f2d227994316e2890f1a975d073a1fd80325b3b36dcd6fa60bedd9eb716317ec97267d8d78fc98c75bef38ebac8ee1d2721aaa
+SHA256: 629af4bce9deb47f7e66ccfd585785cffa2d1d41ae565cfb623ed66d7cfc35ed
+SHA1: e680be0c83b48ba8bf405cefb437de6314b1080f
+MD5sum: 5764ad6ebfecda6e11070f40031ebcf2
+Description: gir files for renderer library for SVG files
+ The rsvg library is an efficient renderer for Scalable Vector Graphics
+ (SVG) pictures.
+ .
+ This package contains GObject-Introspection information.
+
 Package: gtk4-layer-shell-doc
 Source: gtk4-layer-shell
 Version: 1.3.0-1~24.04.2
@@ -168,4 +191,148 @@ Description: wayland session lock library (GTK4) -- development files
  and any language that supports GObject introspection files (Python, Vala, etc).
  .
  This package contains the development headers.
+
+Package: librsvg2-2
+Source: librsvg
+Version: 2.61.3+dfsg-3~24.04.2
+Architecture: arm64
+Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
+Installed-Size: 5151
+Depends: libc6 (>= 2.34), libcairo-gobject2 (>= 1.10.0), libcairo2 (>= 1.15.8), libgcc-s1 (>= 4.2), libgdk-pixbuf-2.0-0 (>= 2.25.2), libglib2.0-0t64 (>= 2.54.0), libpango-1.0-0 (>= 1.48.11), libpangocairo-1.0-0 (>= 1.48.11), libxml2 (>= 2.9.0)
+Recommends: librsvg2-common
+Suggests: librsvg2-bin
+Multi-Arch: same
+Homepage: https://gnome.pages.gitlab.gnome.org/librsvg/
+Priority: optional
+Section: libs
+Filename: pool/main/libr/librsvg/librsvg2-2_2.61.3+dfsg-3~24.04.2_arm64.deb
+Size: 1729306
+SHA512: 84060828bbdc67238f6fd5e669be31d7c21a84b213a3c71743e4c58f279fb23f7dc2c815f83b7bf4d8bc1f15dc2b5fc69930ab842a4704a9a6eacca57379ddf3
+SHA256: b6e889f2abe2adc017fca8b9f314ab7d1a7a490616e3847b1324fcfe3efe0561
+SHA1: 69df688c10ff68d62a55147538d9c6ba4df3a820
+MD5sum: ffcd1bdfe4fb005adde38856e86f29e9
+Description: SAX-based renderer library for SVG files (runtime)
+ The rsvg library is an efficient renderer for Scalable Vector Graphics
+ (SVG) pictures.
+ .
+ This package contains the runtime library, necessary to run
+ applications using librsvg.
+
+Package: librsvg2-bin
+Source: librsvg
+Version: 2.61.3+dfsg-3~24.04.2
+Architecture: arm64
+Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
+Installed-Size: 5682
+Depends: librsvg2-2 (>= 2.61.3+dfsg-3~24.04.2), libc6 (>= 2.34), libcairo-gobject2 (>= 1.10.0), libcairo2 (>= 1.15.10), libfontconfig1 (>= 2.12.6), libgcc-s1 (>= 4.2), libglib2.0-0t64 (>= 2.50.0), libharfbuzz0b (>= 0.6.0), libpango-1.0-0 (>= 1.48.11), libpangocairo-1.0-0 (>= 1.48.11), libxml2 (>= 2.9.0)
+Multi-Arch: foreign
+Homepage: https://gnome.pages.gitlab.gnome.org/librsvg/
+Priority: optional
+Section: graphics
+Filename: pool/main/libr/librsvg/librsvg2-bin_2.61.3+dfsg-3~24.04.2_arm64.deb
+Size: 1884242
+SHA512: 62eef17d1e22b7b1b9d7364cb0a513dc122724ee22a23436ec0f5ce1e4b75df2ca04ae630af04f5db897b368e9da9d729bb8150ab9017c6242f0802bac076631
+SHA256: 69c294377ef4a8ee25d382dfac5520a89029cdaa1f20b59d9a17d667db199763
+SHA1: dec65101f74eb7bfd7fc00b80c09d206c84cf5e4
+MD5sum: d98c63832d4c517f3a15d62aa81de19d
+Description: command-line utility to convert SVG files
+ The rsvg library is an efficient renderer for Scalable Vector Graphics
+ (SVG) pictures.
+ .
+ This package includes a command-line utility to convert the SVG files
+ to the PNG format.
+
+Package: librsvg2-common
+Source: librsvg
+Version: 2.61.3+dfsg-3~24.04.2
+Architecture: arm64
+Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
+Installed-Size: 366
+Depends: librsvg2-2 (= 2.61.3+dfsg-3~24.04.2), libc6 (>= 2.34), libgcc-s1 (>= 4.2), libgdk-pixbuf-2.0-0 (>= 2.23.5-2), libglib2.0-0t64 (>= 2.50.0)
+Multi-Arch: same
+Homepage: https://gnome.pages.gitlab.gnome.org/librsvg/
+Priority: optional
+Section: libs
+Filename: pool/main/libr/librsvg/librsvg2-common_2.61.3+dfsg-3~24.04.2_arm64.deb
+Size: 149790
+SHA512: dd95803dc12d94c1a0dd0ffa3baf33cfe3ef8a4a4efac81d49a7e778d565ccf27c50a9ad470ae11cefd42da6b1e3d5f39705ff83cbb4dd8df28c223d339748c9
+SHA256: fd86066d8ffb55bfaa3274126abb7ff299a7777483759e700e5b5ebf23df4e11
+SHA1: 40bda62bf4029456717b353d6e313651db415053
+MD5sum: 330043de5dcf9af382cc25aac311bba7
+Description: SAX-based renderer library for SVG files (extra runtime)
+ The rsvg library is an efficient renderer for Scalable Vector Graphics
+ (SVG) pictures.
+ .
+ This package includes the gdk-pixbuf loader allowing
+ to load SVG images transparently inside GTK+ applications.
+
+Package: librsvg2-dev
+Source: librsvg
+Version: 2.61.3+dfsg-3~24.04.2
+Architecture: arm64
+Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
+Installed-Size: 280
+Depends: gir1.2-rsvg-2.0 (= 2.61.3+dfsg-3~24.04.2), libcairo2-dev (>= 1.2.0), libgdk-pixbuf-2.0-dev (>= 2.23.5-2), libglib2.0-dev (>= 2.50.0), libpango1.0-dev (>= 1.48.11), libxml2-dev (>= 2.9.0), librsvg2-2 (= 2.61.3+dfsg-3~24.04.2), librsvg2-common (= 2.61.3+dfsg-3~24.04.2), gir1.2-cairo-1.0-dev, gir1.2-gdkpixbuf-2.0-dev, gir1.2-gio-2.0-dev, gir1.2-glib-2.0-dev, gir1.2-gobject-2.0-dev
+Suggests: librsvg2-doc
+Provides: gir1.2-rsvg-2.0-dev (= 2.61.3+dfsg-3~24.04.2)
+Multi-Arch: same
+Homepage: https://gnome.pages.gitlab.gnome.org/librsvg/
+Priority: optional
+Section: libdevel
+Filename: pool/main/libr/librsvg/librsvg2-dev_2.61.3+dfsg-3~24.04.2_arm64.deb
+Size: 41102
+SHA512: ff844633b69517780ed5ee21effdc1f8990112a578ef1d6c07166474eafccf9422fe48c21cda4655e13067d0134cd15495e36160eb58828eb21a6ef9525c8322
+SHA256: 33d5178b70457a9899654f8bc82443c9fe2b97d71dc196ea4526369e293d0d34
+SHA1: f3152606896d9fb8c1d84ce9826b576102a506f1
+MD5sum: 9a785531a7a24e879d08f4735ed073f5
+Description: SAX-based renderer library for SVG files (development)
+ The rsvg library is an efficient renderer for Scalable Vector Graphics
+ (SVG) pictures.
+ .
+ This package provides the necessary development libraries and include
+ files to allow you to develop with librsvg.
+
+Package: librsvg2-doc
+Source: librsvg
+Version: 2.61.3+dfsg-3~24.04.2
+Architecture: all
+Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
+Installed-Size: 897
+Multi-Arch: foreign
+Homepage: https://gnome.pages.gitlab.gnome.org/librsvg/
+Priority: optional
+Section: doc
+Filename: pool/main/libr/librsvg/librsvg2-doc_2.61.3+dfsg-3~24.04.2_all.deb
+Size: 74444
+SHA512: 0d59fbdd4a6474fcc9c2de1920d40e6296a5f21e9e0e2ee435da12dc9b9d277dca122ab5d39b71f2b7afc5d9294ed6959ea1bf955f8b544f74aad811c5abbbd9
+SHA256: c73848d070f0c06da3650717d39f9ecef751b4f04c7d79c8add74d30f50ad05e
+SHA1: 9df0e0261319746b23b16561f0bf7badca2fca11
+MD5sum: 3b353fdb8d60d34b4f5c3efdf1777a91
+Description: SAX-based renderer library for SVG files (documentation)
+ The rsvg library is an efficient renderer for Scalable Vector Graphics
+ (SVG) pictures.
+ .
+ This package provides the API documentation.
+
+Package: librsvg2-tests
+Source: librsvg
+Version: 2.61.3+dfsg-3~24.04.2
+Architecture: arm64
+Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
+Installed-Size: 10239
+Homepage: https://gnome.pages.gitlab.gnome.org/librsvg/
+Priority: optional
+Section: misc
+Filename: pool/main/libr/librsvg/librsvg2-tests_2.61.3+dfsg-3~24.04.2_arm64.deb
+Size: 4666246
+SHA512: cf7adc8a34e82e10efa891aa4fd3036192e78d57d89087b5c6503cfe17a738b88ef225ab512135334ac036e95356459e06ef899b808dce167a315c5aede4a096
+SHA256: 29f6693848bbd5952c64f73769b4aaf4b829f62583768611667dbc02f355e506
+SHA1: 77db0ca39971f7466ecd680b50313c2c2fc54087
+MD5sum: f77961b4b5a3284607b232207746d631
+Description: automated tests for RSVG library
+ The rsvg library is an efficient renderer for Scalable Vector Graphics
+ (SVG) pictures.
+ .
+ This package contains automated tests, which can be run with
+ gnome-desktop-testing or autopkgtest.
 

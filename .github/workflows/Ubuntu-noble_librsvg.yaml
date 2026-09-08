@@ -1,0 +1,146 @@
+name: Build librsvg for Noble
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Noble packages (${{ matrix.arch }})
+    runs-on: ${{ matrix.runner }}
+
+    env:
+      CARGO_HOME: /home/runner/.cargo
+      PATH: /home/runner/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      RUSTUP_HOME: /home/runner/.rustup
+      RUSTUP_TOOLCHAIN: stable
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: amd64
+            runner: ubuntu-24.04
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+
+    steps:
+      - name: Install packaging tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes \
+            devscripts \
+            equivs \
+            ubuntu-dev-tools
+
+      - name: Install Rust build tools
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup default stable
+          cargo install cargo-c --version 0.10.10 --locked
+          rustc --version
+          cargo --version
+          cargo cbuild --version
+
+      - name: Download Ubuntu source package
+        working-directory: ${{ runner.temp }}
+        run: pull-lp-source librsvg resolute
+
+      - name: Prepare Noble backport
+        working-directory: ${{ runner.temp }}
+        env:
+          DEBEMAIL: github-actions@github.com
+          DEBFULLNAME: GitHub Actions
+        run: |
+          source_dir=$(find . -mindepth 1 -maxdepth 1 -type d -name 'librsvg-*' -print -quit)
+          test -n "$source_dir"
+          cd "$source_dir"
+
+          source_version=$(dpkg-parsechangelog --show-field Version)
+          dch \
+            --force-bad-version \
+            --newversion "${source_version}~24.04.${GITHUB_RUN_NUMBER}" \
+            --distribution noble \
+            "Backport to Ubuntu 24.04 for CI."
+
+          # rustc, cargo and cargo-c come from rustup above. They cannot satisfy
+          # dpkg's Build-Depends database even though the required executables
+          # and versions are installed.
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+
+          control = Path("debian/control")
+          text = control.read_text()
+          match = re.search(
+              r"^Build-Depends:\s*(.*(?:\n[ \t]+.*)*)",
+              text,
+              flags=re.MULTILINE,
+          )
+          if match is None:
+              raise SystemExit("Build-Depends field not found in debian/control")
+
+          dependencies = re.split(r",\s*(?:\n[ \t]*)?", match.group(1))
+          rust_packages = {"cargo", "cargo-c", "rustc"}
+          dependencies = [
+              dependency
+              for dependency in dependencies
+              if re.match(r"[a-z0-9][a-z0-9+.-]*", dependency).group(0)
+              not in rust_packages
+          ]
+          replacement = "Build-Depends: " + ",\n ".join(dependencies)
+          text = text[:match.start()] + replacement + text[match.end():]
+
+          # reprepro requires Priority in each binary package's generated
+          # control metadata.  The newer source package omits it from some
+          # binary stanzas, so make it explicit for this Noble backport.
+          paragraphs = re.split(r"\n\s*\n", text.strip())
+          for index, paragraph in enumerate(paragraphs):
+              if re.search(r"^Package:\s*", paragraph, flags=re.MULTILINE) and not re.search(
+                  r"^Priority:\s*", paragraph, flags=re.MULTILINE
+              ):
+                  paragraphs[index] = paragraph.rstrip() + "\nPriority: optional\n"
+
+          control.write_text("\n\n".join(paragraphs) + "\n")
+          PY
+
+      - name: Install build dependencies
+        working-directory: ${{ runner.temp }}
+        run: |
+          source_dir=$(find . -mindepth 1 -maxdepth 1 -type d -name 'librsvg-*' -print -quit)
+          test -n "$source_dir"
+          cd "$source_dir"
+          sudo mk-build-deps \
+            --install \
+            --remove \
+            --tool 'apt-get --yes --no-install-recommends' \
+            debian/control
+
+      - name: Build binary packages
+        working-directory: ${{ runner.temp }}
+        run: |
+          source_dir=$(find . -mindepth 1 -maxdepth 1 -type d -name 'librsvg-*' -print -quit)
+          test -n "$source_dir"
+          cd "$source_dir"
+          dpkg-buildpackage --build=binary --no-sign
+
+          for package in ../*.deb; do
+            test "$(dpkg-deb --field "$package" Priority)" = optional
+          done
+
+      - name: Collect packages
+        working-directory: ${{ runner.temp }}
+        run: |
+          mkdir packages
+          find . \
+            -maxdepth 1 \
+            -type f \
+            -name '*.deb' \
+            -exec cp --target-directory=packages {} +
+          test -n "$(find packages -maxdepth 1 -type f -name '*.deb' -print -quit)"
+
+      - name: Upload packages
+        uses: actions/upload-artifact@v7
+        with:
+          name: librsvg-noble-${{ matrix.arch }}
+          path: ${{ runner.temp }}/packages/*.deb
+          if-no-files-found: error
