@@ -1,0 +1,47 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Origin: Martin
+Label: Martin PPA
+Suite: noble
+Codename: noble
+Date: Tue, 08 Sep 2026 20:42:50 UTC
+Architectures: amd64 arm64
+Components: main
+Description: Random packages
+MD5Sum:
+ 44f334204a92f40fcb51e11811bb693a 8033 main/binary-amd64/Packages
+ 60a224fcfb253beb114fe0409fcd1e91 10240 main/binary-amd64/Packages.gz
+ 3af2a27ec7b8ea6533b4aeb55d1f7fe5 113 main/binary-amd64/Release
+ 313cf7b719cfbaa42da71f7fbbde41e8 8033 main/binary-arm64/Packages
+ 44e2540c5f44f00497218bc2aa4862a0 10240 main/binary-arm64/Packages.gz
+ f5109f400fa7fa899628055d8bbb5369 113 main/binary-arm64/Release
+SHA1:
+ 0977fa54d0e85eddf724ef97810cb6629e392504 8033 main/binary-amd64/Packages
+ e505a7eb905c97fdff7e5164e5a501c1b494953d 10240 main/binary-amd64/Packages.gz
+ 51b156b49dcde4af5fc23f6810bd6f0b297c0454 113 main/binary-amd64/Release
+ b5fcf2ece20ce8c8fc8f7d51b4a8b6a84ffadfa5 8033 main/binary-arm64/Packages
+ 499caec72e8bd5f5b9a6f037bc3ffd9bcfd284b2 10240 main/binary-arm64/Packages.gz
+ 970d8e0afeb3fe239ca98ccfebb222848d5642ab 113 main/binary-arm64/Release
+SHA256:
+ 62d88f3da1c3f6e602e60120f7a52bf559881c34042f8e4fba5fb5b8123073cf 8033 main/binary-amd64/Packages
+ acef2c3adce06846c1e56f1064424216013d8e0480cf943a51c4c919413dd5b7 10240 main/binary-amd64/Packages.gz
+ d49113b68a96581adaa8f611f0739f34ee9a9ccba1cc7eb17fde6482078ff8bf 113 main/binary-amd64/Release
+ 928f1318679c81c771635a64d952a746d5024457735794f86d7ed7cc4c96efbd 8033 main/binary-arm64/Packages
+ e8784c40b08e365dae5609a5eee35bc6242d95dbf9dfb7b0886b606bda3cfa41 10240 main/binary-arm64/Packages.gz
+ d3385301f09bac3f3fb84499e1174eb09d26cc88aaca85ea9155efda42a71fb8 113 main/binary-arm64/Release
+SHA512:
+ abd8db5de82c7a95e49bc25bbc8aa728adab9774ed277600741a8548a08ed38317ddaab8e9ec12307b4070687349ea426bb3ab6d0f4e5306c4bfaa7761a759f2 8033 main/binary-amd64/Packages
+ 7fe65b9d79c11c8da77855a60dcfebd66d78b4d58094dd2501f5e4da6f8d8482affd6a33b25b6ddf736b1316ab531add2b7e7ac8b5b52687cf75f347fd668f24 10240 main/binary-amd64/Packages.gz
+ bafb96ef612382cc08c5055f68cb7eecfe60f207ff4ef2f49a51b2e24796ec88970302551e40b6287a472f28af5c237ca91319a484e6e17fd4c1796386d9cf3c 113 main/binary-amd64/Release
+ b6e6d98828851e0a38f35be2d32a319317cd443cd193555795c39104bea300043b332890d8f7207275e2513439f733ae93da8ccd887a4d6897e64dac548aa1a0 8033 main/binary-arm64/Packages
+ 4e17a88e420d2456dc8d7691cb6d24b61b28669d78964f861c7bcba03db3e928544023fd2adc328c03414d303c5938e35aa0b6d5a49ba2b53e3e1c2557218999 10240 main/binary-arm64/Packages.gz
+ e5553e22e70156b126adfda23c7f122a6836c9cca3aedbba11804c36d210eeb42cd80b138c956f130e56431f5bf59a67d81af3e37130e306354cb3edfa628961 113 main/binary-arm64/Release
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQTEjXRkMAPdEWyZr5XbycxYWFaxKgUCaqBzSgAKCRDbycxYWFax
+KlS3AQCE8kf3DM+zeKsDmXpYlTXSVhk0PJOLsCYhgET7QdfVvwD+IZ5TW6V7KT0u
+e83wyAhdXxz/khDZWddeFFWe8GxcYww=
+=q/Dh
+-----END PGP SIGNATURE-----
